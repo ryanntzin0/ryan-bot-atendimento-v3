@@ -1,4 +1,4 @@
-import { Bot, Building2, Clock, FlaskConical, Inbox, LayoutDashboard, LogOut, MessageSquareText, Settings, UsersRound } from "lucide-react";
+import { Bot, Building2, Clock, FlaskConical, Inbox, LayoutDashboard, LogOut, MessageSquareText, Settings, UsersRound, MessageCircle } from "lucide-react";
 
 export default function Sidebar({ pagina, setPagina, sair, usuario }) {
   const isAtendente = usuario?.tipo === "atendente";
@@ -10,6 +10,7 @@ export default function Sidebar({ pagina, setPagina, sair, usuario }) {
     { id: "config", label: "Configurações", icon: Settings, show: !isAtendente },
     { id: "menus", label: "Menus", icon: MessageSquareText, show: !isAtendente },
     { id: "horarios", label: "Horários", icon: Clock, show: !isAtendente },
+    { id: "whatsapp", label: "WhatsApp", icon: MessageCircle, show: !isAtendente },
     { id: "atendimentos", label: "Atendimentos", icon: Inbox, show: true },
     { id: "testar", label: "Testar bot", icon: FlaskConical, show: !isAtendente }
   ].filter(item => item.show);
@@ -18,7 +19,7 @@ export default function Sidebar({ pagina, setPagina, sair, usuario }) {
     <aside className="sidebar">
       <div className="brand">
         <div className="brand-icon"><Bot size={24} /></div>
-        <div><strong>Ryan Bot</strong><span>Atendimento V4</span></div>
+        <div><strong>Ryan Bot</strong><span>Atendimento V5</span></div>
       </div>
 
       <div className="user-box">

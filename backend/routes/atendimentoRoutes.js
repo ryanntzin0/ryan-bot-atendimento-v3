@@ -2,8 +2,10 @@ const express = require("express");
 const { authMiddleware } = require("../middlewares/authMiddleware");
 const { canViewAtendimentos, blockAtendente } = require("../middlewares/permissionMiddleware");
 const { listarAtendimentos, buscarAtendimento, atualizarStatus, responderManual, limparAtendimentos } = require("../services/atendimentoService");
+const { sendWhatsAppTextMessage } = require("../services/whatsappService");
 
 const router = express.Router();
+
 router.use(authMiddleware);
 router.use(canViewAtendimentos);
 
@@ -31,8 +33,16 @@ router.patch("/:id/status", async (req, res, next) => {
 });
 
 router.post("/:id/responder", async (req, res, next) => {
-  try { res.json(await responderManual(req.query.empresaId, req.params.id, req.body.texto)); }
-  catch (error) { next(error); }
+  try {
+    const atendimento = await responderManual(req.query.empresaId, req.params.id, req.body.texto);
+
+    let whatsapp = { enviado: false, motivo: "Integração WhatsApp não configurada ou desativada." };
+    if (atendimento?.telefone) {
+      whatsapp = await sendWhatsAppTextMessage(req.query.empresaId, atendimento.telefone, req.body.texto);
+    }
+
+    res.json({ atendimento, whatsapp });
+  } catch (error) { next(error); }
 });
 
 module.exports = router;

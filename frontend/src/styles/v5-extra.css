@@ -1,0 +1,2 @@
+.copy-line{display:grid;grid-template-columns:1fr 110px;gap:10px;align-items:center}.code-box{background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:16px;padding:14px;color:#dbeafe;white-space:pre-wrap;overflow:auto}
+@media(max-width:1050px){.copy-line{grid-template-columns:1fr}}

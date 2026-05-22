@@ -10,6 +10,7 @@ const configRoutes = require("./routes/configRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 const atendimentoRoutes = require("./routes/atendimentoRoutes");
 const webhookRoutes = require("./routes/webhookRoutes");
+const whatsappConfigRoutes = require("./routes/whatsappConfigRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,9 +21,10 @@ app.use(express.json({ limit: "20mb" }));
 app.get("/", (req, res) => {
   res.json({
     app: "Ryan Bot Atendimento",
-    version: "4.0.0",
+    version: "5.0.0",
     status: "online",
-    database: "supabase"
+    database: "supabase",
+    whatsapp: "prepared"
   });
 });
 
@@ -32,6 +34,7 @@ app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/config", configRoutes);
 app.use("/api/menus", menuRoutes);
 app.use("/api/atendimentos", atendimentoRoutes);
+app.use("/api/whatsapp-config", whatsappConfigRoutes);
 app.use("/webhook", webhookRoutes);
 
 app.use((err, req, res, next) => {
@@ -43,5 +46,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Ryan Bot Atendimento V4 rodando em http://localhost:${PORT}`);
+  console.log(`Ryan Bot Atendimento V5 rodando em http://localhost:${PORT}`);
 });

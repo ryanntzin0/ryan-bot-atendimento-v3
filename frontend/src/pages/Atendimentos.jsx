@@ -48,9 +48,17 @@ export default function Atendimentos({ empresaId, usuario, showToast }) {
         method: "POST",
         body: JSON.stringify({ texto: resposta })
       });
-      setSelecionado(data);
+
+      const atendimentoAtualizado = data.atendimento || data;
+      setSelecionado(atendimentoAtualizado);
       setResposta("");
-      showToast("Resposta manual salva.");
+
+      if (data.whatsapp) {
+        showToast(data.whatsapp.enviado ? "Resposta salva e enviada no WhatsApp." : `Resposta salva. WhatsApp: ${data.whatsapp.motivo}`, data.whatsapp.enviado ? "success" : "error");
+      } else {
+        showToast("Resposta manual salva.");
+      }
+
       carregar();
     } catch (error) { showToast(error.message, "error"); }
   }

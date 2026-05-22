@@ -7,6 +7,7 @@ import Usuarios from "./pages/Usuarios";
 import ConfigBot from "./pages/ConfigBot";
 import MenusRespostas from "./pages/MenusRespostas";
 import Horarios from "./pages/Horarios";
+import WhatsAppConfig from "./pages/WhatsAppConfig";
 import Atendimentos from "./pages/Atendimentos";
 import TestarBot from "./pages/TestarBot";
 import Sidebar from "./components/Sidebar";
@@ -84,6 +85,7 @@ export default function App() {
     config: <ConfigBot {...common} />,
     menus: <MenusRespostas {...common} />,
     horarios: <Horarios {...common} />,
+    whatsapp: <WhatsAppConfig {...common} />,
     atendimentos: <Atendimentos {...common} />,
     testar: <TestarBot {...common} />
   };

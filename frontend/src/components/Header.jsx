@@ -7,6 +7,7 @@ const titles = {
   config: "Configurações do bot",
   menus: "Menus e respostas",
   horarios: "Horário de funcionamento",
+  whatsapp: "Integração WhatsApp",
   atendimentos: "Atendimentos",
   testar: "Teste do bot"
 };
@@ -17,7 +18,7 @@ export default function Header({ pagina, usuario, empresas, empresaId, setEmpres
   return (
     <header className="top-header">
       <div>
-        <p>Plataforma com Supabase, JWT e permissões reais</p>
+        <p>Plataforma com Supabase, JWT, permissões e WhatsApp Cloud API</p>
         <h1>{titles[pagina] || "Ryan Bot"}</h1>
         {empresaAtual && <small className="subline">Empresa ativa: {empresaAtual.nome} • Plano {empresaAtual.plano}</small>}
       </div>
